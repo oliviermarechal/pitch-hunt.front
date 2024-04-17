@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: 'Russo-one';
+    font-style: normal;
+    font-weight: 500;
+    src: local(''), url('/fonts/russo-one/russo-one.ttf') format('truetype'),
+}
+
+html {
+    font-family: 'Russo-one';
+}
+
+.main-bg {
+    background-image: url('/images/bg_home.png');
+}
+
+.modal-bg {
+    background-image: url('/images/login-bg.png');
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.grey-text {
+    color: #9b9b9b;
+}
