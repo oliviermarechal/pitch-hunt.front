@@ -34,7 +34,7 @@
 {#if loading}
     <p>Waiting...</p>
 {/if}
-<form on:submit|preventDefault={handleSubmit} class="space-y-4 text-secondary">
+<form on:submit|preventDefault={handleSubmit} class="space-y-4 text-secondary h-70 py-4 md:py-16 px-4 sm:px-12 md:px-24">
     <div>
         <label for="video" class="block text-sm font-medium">Video</label>
         <input type="file" accept="video/*" id="video" bind:files={files} class="w-full mt-1 mb-3 p-2 rounded bg-primary opacity-70 text-secondary" />

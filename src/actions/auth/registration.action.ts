@@ -1,10 +1,10 @@
 import apiClient from "$lib/api"
 import { userStore } from "../../stores/user.store"
 
-export async function register(email: string, password: string): Promise<{success: boolean, error?: string}>{
+export async function register(email: string, password: string, username: string): Promise<{success: boolean, error?: string}>{
     const response = await apiClient.post(
         '/api/registration',
-        { email, password },
+        { email, password, username },
         { headers: {
             'Content-Type': 'application/json'
         }},

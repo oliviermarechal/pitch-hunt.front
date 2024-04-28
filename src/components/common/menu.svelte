@@ -2,6 +2,7 @@
     import { onMount } from 'svelte';
     import { userStore } from '../../stores/user.store';
     import { goto } from '$app/navigation';
+	import { showNewPitchModal } from '../../stores/pitch.store';
 
     let dropdownOpen = false;
   
@@ -17,6 +18,11 @@
         }
     }
   
+    const handleOpenNewPitch = () => {
+        toggleDropdown();
+        showNewPitchModal();
+    }
+
     onMount(() => {
         const handleClickOutside = (event: any) => {
             if (!event.target.closest('.dropdown')) {
@@ -39,9 +45,9 @@
             on:click={toggleDropdown}
         >
             <img
-            src="images/avatar/p2.png"
-            alt="avatar"
-            class="w-16 h-16 rounded-full border border-secondary"
+                src="images/avatar/p2.png"
+                alt="avatar"
+                class="w-10 h-10 sm:w-16 sm:h-16 rounded-full border border-secondary"
             />
         </button>
         {#if dropdownOpen}
@@ -56,6 +62,12 @@
                         role="menuitem">
                         Profile
                     </a>
+                    <button 
+                        on:click={() => handleOpenNewPitch()} 
+                        class="block px-4 py-2 text-sm rounded hover:border-secondary border-black border sm:hidden"
+                >
+                    Create pitch
+                </button>
                     <hr class="border-t border-gray-200 my-2" />
                     <button
                         class="w-full block text-left px-4 py-2 text-sm rounded hover:border-secondary border-primary border"

@@ -9,16 +9,36 @@
     src: local(''), url('/fonts/russo-one/russo-one.ttf') format('truetype'),
 }
 
+.plyr--full-ui,
+.plyr__video-wrapper {
+    border-radius: 0.75rem!important;
+}
+
 html {
     font-family: 'Russo-one';
+    scrollbar-color: #fcee07 black ;
+}
+
+input:focus-visible,
+textarea:focus-visible {
+    outline: none;
 }
 
 .main-bg {
-    background-image: url('/images/bg_home.png');
+    background-image: url('/images/bg-home-blur.png');
+    background-size: cover;
+    background-position: center center;
 }
 
 .modal-bg {
     background-image: url('/images/login-bg.png');
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.bg-pitch-view {
+    background-image: url('/images/bg-pitch-view-blur.png');
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;

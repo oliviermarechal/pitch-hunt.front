@@ -31,11 +31,18 @@
     const cancelDeletePitch = () => {
         showConfirm = false;
     }
+
+    const formatDuration = (duration: number) => {
+        const min = Math.floor(duration / 60);
+        const secondesleft = duration % 60;
+
+        return `${min}:${secondesleft < 10 ? '0' : ''}${secondesleft}`;
+    }
 </script>
 
-<main class="px-12">
-    <div class="flex flex-row">
-        <div class="w-full border border-secondary bg-black opacity-70 m-6 p-4 rounded">
+<main class="md:px-12 pb-4">
+    <div class="flex flex-row px-4">
+        <div class="w-full border border-secondary bg-black opacity-70 md:m-6 p-4 rounded">
             <div class="flex flex-row items-center">
                 <img src="images/avatar/p2.png" alt="avatar" class="w-24 h-24 rounded-full border border-secondary" />
                 <div class="flex flex-col space-y-2 pl-5 w-full">
@@ -47,16 +54,16 @@
                 </div>
             </div>
         </div>
-        <div class="w-full text-center"></div>
-        <div class="w-full text-center"></div>
+        <div class="xl:w-full sm:w-0 text-center"></div>
+        <div class="md:w-full sm:w-0 text-center"></div>
     </div>
     
-    <h2 class="text-2xl pt-8 pb-4 text-secondary">My pitchs</h2>
+    <h2 class="text-2xl pt-8 pb-4 text-secondary px-4">My pitchs</h2>
     <hr class="border-secondary pb-4 opacity-50 border-t-2" />
     {#if $myPitchesStore.pitches?.length > 0}
         {#each $myPitchesStore.pitches as pitch}
-            <div class="grid grid-cols-8 bg-black opacity-70 my-6 text-sm">
-                <div class="flex flex-col w-full space-y-2 p-4">
+            <div class="grid grid-cols-4 md:grid-cols-8 bg-black opacity-70 my-6 text-sm text-center">
+                <div class="md:flex hidden flex-col w-full space-y-2 p-4">
                     <span class="text-secondary">Creation date</span>
                     <span class="text-white">{new Date(pitch.created_at).toLocaleDateString()}</span>
                 </div>
@@ -64,9 +71,15 @@
                     <span class="text-secondary">Title</span>
                     <span class="text-white">{pitch.title}</span>
                 </div>
-                <div class="flex flex-col w-full space-y-2 p-4">
+                <div class="md:flex hidden flex-col w-full space-y-2 p-4">
                     <span class="text-secondary">Description</span>
-                    <span class="text-white">{pitch.description}</span>
+                    <span class="text-white">
+                        {#if pitch.description.length > 50}
+                            {pitch.description.substring(0, 50)}...
+                        {:else}
+                            {pitch.description}
+                        {/if}
+                    </span>
                 </div>
                 <div class="flex flex-col w-full space-y-2 p-4">
                     <span class="text-secondary">likes</span>
@@ -76,17 +89,17 @@
                     <span class="text-secondary">Dislike</span>
                     <span class="text-white">{pitch.dislike}</span>
                 </div>
-                <div class="flex flex-col w-full space-y-2 p-4">
+                <div class="md:flex hidden flex-col w-full space-y-2 p-4">
                     <span class="text-secondary">Duration</span>
-                    <span class="text-white">{pitch.video?.duration || 0}</span>
+                    <span class="text-white">{pitch.video ? formatDuration(pitch.video.duration) : 0}</span>
                 </div>
-                <div class="flex flex-col w-full space-y-2 p-4">
+                <div class="md:flex hidden flex-col w-full space-y-2 p-4">
                     <span class="text-secondary">Status</span>
                     <span class="text-white">{pitch.status}</span>
                 </div>
                 <div class="flex flex-col w-full space-y-2 p-4">
                     <span class="text-secondary">Actions</span>
-                    <div class="flex flex-row space-x-2">
+                    <div class="flex flex-row justify-center space-x-2">
                         {#if pitch.status === 'draft'}
                             <button on:click={() => handlePublishPitch(pitch.id)} class="bg-tertiary border border-tertiary hover:border-tertiary hover:bg-black hover:text-tertiary rounded-lg p-1 text-black hover:text-tertiary">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">

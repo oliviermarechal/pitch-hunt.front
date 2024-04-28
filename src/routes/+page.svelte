@@ -22,7 +22,7 @@
 </script>
 
 <main class="mx-auto p-4 lg:p-8">
-    <div class="bg-primary opacity-80 grey-text p-4 w-1/2">
+    <div class="bg-primary opacity-80 grey-text p-4 lg:w-1/2 xs:w-full">
         <h1 class="text-2xl">Welcome to <span class="text-secondary">Pitch hunt</span></h1>
         <p>Platform to evaluate your product idea</p>
     </div>
@@ -34,7 +34,7 @@
     {#if $lastPublishedStore.loading}
         <p>Loading...</p>
     {:else}
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3 gap-4">
             {#each $lastPublishedStore?.pitches as pitchData}
                 <PitchCard
                     pitch={pitchData.pitch} 

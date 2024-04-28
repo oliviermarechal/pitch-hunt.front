@@ -1,14 +1,29 @@
 import { writable } from 'svelte/store';
+import type { User } from './user.store';
+
+export interface Comment {
+    id: string;
+    content: string;
+    author: User;
+    parent_id?: string;
+    created_at: string;
+    deleted: boolean;
+    updated: boolean;
+    childs?: Comment[];
+}
 
 export interface Pitch {
     id: string;
     title: string;
     description: string;
     user_id: string;
+    user?: User;
     status: 'draft' | 'published';
     like: number;
     dislike: number;
     created_at: string;
+    comments?: Comment[];
+    nb_followers: number;
     video?: {
         id: string;
         url: string;

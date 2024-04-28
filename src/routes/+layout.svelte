@@ -4,7 +4,7 @@
   </script>
   
 
-<Header />
 <div class="main-bg min-h-screen">
+  <Header />
   <slot />
 </div>
